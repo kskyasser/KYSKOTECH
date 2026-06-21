@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}iPhone 15 - KYSKOTECH{% endblock %}
+
+{% block body %}
+
+<header class="header">
+    <div class="header-content">
+        <a href="{{ path('app_home') }}" class="logo">KYSKOTECH</a>
+        <nav class="header-nav">
+            <a href="#">Connexion</a>
+            <a href="#">🛒 Panier</a>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+
+        <div class="product-detail">
+            <div class="product-detail-image"></div>
+            <div class="product-detail-info">
+                <h1>iPhone 15</h1>
+                <p class="product-brand">Apple</p>
+                <p class="product-detail-price">899 €</p>
+                <p class="product-stock">✓ En stock</p>
+                <p class="product-description">Smartphone dernière génération, écran 6,1 pouces, 128 Go de stockage, double capteur photo. Garantie 2 ans.</p>
+                <a href="#" class="btn-primary">Ajouter au panier</a>
+            </div>
+        </div>
+
+        <div class="reviews">
+            <h2 class="section-title">Avis clients</h2>
+            <div class="review-card">
+                <p class="review-author">Marie D.</p>
+                <p class="review-stars">★★★★★</p>
+                <p>Excellent téléphone, livraison rapide. Je recommande KYSKOTECH !</p>
+            </div>
+            <div class="review-card">
+                <p class="review-author">Thomas L.</p>
+                <p class="review-stars">★★★★☆</p>
+                <p>Bon rapport qualité-prix, conforme à la description.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

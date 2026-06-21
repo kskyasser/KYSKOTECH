@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier - KYSKOTECH{% endblock %}
+
+{% block body %}
+
+<header class="header">
+    <div class="header-content">
+        <a href="{{ path('app_home') }}" class="logo">KYSKOTECH</a>
+        <nav class="header-nav">
+            <a href="#">Connexion</a>
+            <a href="#">🛒 Panier</a>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">Mon panier</h1>
+        <div class="cart-layout">
+
+            <div class="cart-items">
+                <div class="cart-item">
+                    <div class="cart-item-image"></div>
+                    <div class="cart-item-info">
+                        <h3>iPhone 15</h3>
+                        <p>899 €</p>
+                    </div>
+                    <p class="cart-item-qty">Qté : 1</p>
+                </div>
+                <div class="cart-item">
+                    <div class="cart-item-image"></div>
+                    <div class="cart-item-info">
+                        <h3>Casque audio</h3>
+                        <p>76 €</p>
+                    </div>
+                    <p class="cart-item-qty">Qté : 2</p>
+                </div>
+            </div>
+
+            <div class="cart-summary">
+                <h3>Récapitulatif</h3>
+                <p class="summary-line">Sous-total : 1051 €</p>
+                <p class="summary-line">Livraison : Gratuite</p>
+                <div class="promo">
+                    <input type="text" placeholder="Code promo">
+                    <button>Appliquer</button>
+                </div>
+                <p class="summary-total">Total : 1051 €</p>
+                <a href="#" class="btn-primary btn-block">Commander</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration - KYSKOTECH{% endblock %}
+
+{% block body %}
+
+<header class="header">
+    <div class="header-content">
+        <a href="{{ path('app_home') }}" class="logo">KYSKOTECH Admin</a>
+        <nav class="header-nav">
+            <a href="#">Déconnexion</a>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <div class="admin-header">
+            <h1 class="section-title">Gestion des produits</h1>
+            <a href="#" class="btn-primary">+ Ajouter un produit</a>
+        </div>
+
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Catégorie</th>
+                    <th>Prix</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>iPhone 15</td>
+                    <td>Smartphones</td>
+                    <td>899 €</td>
+                    <td>24</td>
+                    <td><a href="#" class="action-link">Modifier</a> | <a href="#" class="action-link">Supprimer</a></td>
+                </tr>
+                <tr>
+                    <td>MacBook Air</td>
+                    <td>Ordinateurs</td>
+                    <td>1199 €</td>
+                    <td>12</td>
+                    <td><a href="#" class="action-link">Modifier</a> | <a href="#" class="action-link">Supprimer</a></td>
+                </tr>
+                <tr>
+                    <td>iPad Pro</td>
+                    <td>Tablettes</td>
+                    <td>999 €</td>
+                    <td>8</td>
+                    <td><a href="#" class="action-link">Modifier</a> | <a href="#" class="action-link">Supprimer</a></td>
+                </tr>
+                <tr>
+                    <td>Casque audio</td>
+                    <td>Accessoires</td>
+                    <td>76 €</td>
+                    <td>40</td>
+                    <td><a href="#" class="action-link">Modifier</a> | <a href="#" class="action-link">Supprimer</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+{% endblock %}

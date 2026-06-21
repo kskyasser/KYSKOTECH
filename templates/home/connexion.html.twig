@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion - KYSKOTECH{% endblock %}
+
+{% block body %}
+
+<header class="header">
+    <div class="header-content">
+        <a href="{{ path('app_home') }}" class="logo">KYSKOTECH</a>
+        <nav class="header-nav">
+            <a href="#">Connexion</a>
+            <a href="#">🛒 Panier</a>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="login-card">
+        <h1 class="login-title">Connexion</h1>
+        <form>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="exemple@email.com">
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn-primary btn-block">Se connecter</button>
+        </form>
+        <p class="login-link"><a href="#">Pas encore de compte ? S'inscrire</a></p>
+    </div>
+</section>
+
+{% endblock %}

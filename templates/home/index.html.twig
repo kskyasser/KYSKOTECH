@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}KYSKOTECH - La tech au meilleur prix{% endblock %}
+
+{% block body %}
+
+<header class="header">
+    <div class="header-content">
+        <a href="{{ path('app_home') }}" class="logo">KYSKOTECH</a>
+        <nav class="header-nav">
+            <a href="#">Connexion</a>
+            <a href="#">🛒 Panier</a>
+        </nav>
+    </div>
+</header>
+<section class="hero">
+    <div class="hero-content">
+        <h1>La tech au meilleur prix</h1>
+        <p>Smartphones, ordinateurs, tablettes et accessoires au meilleur prix.</p>
+        <a href="#" class="btn-primary">Voir le catalogue</a>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Nos catégories</h2>
+        <div class="categories-grid">
+            <div class="category-card">Smartphones</div>
+            <div class="category-card">Ordinateurs</div>
+            <div class="category-card">Tablettes</div>
+            <div class="category-card">Accessoires</div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Produits phares</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image"></div>
+                <h3 class="product-name">iPhone 15</h3>
+                <p class="product-price">899 €</p>
+                <a href="#" class="btn-primary btn-block">Ajouter au panier</a>
+            </div>
+            <div class="product-card">
+                <div class="product-image"></div>
+                <h3 class="product-name">MacBook Air</h3>
+                <p class="product-price">1199 €</p>
+                <a href="#" class="btn-primary btn-block">Ajouter au panier</a>
+            </div>
+            <div class="product-card">
+                <div class="product-image"></div>
+                <h3 class="product-name">iPad Pro</h3>
+                <p class="product-price">999 €</p>
+                <a href="#" class="btn-primary btn-block">Ajouter au panier</a>
+            </div>
+            <div class="product-card">
+                <div class="product-image"></div>
+                <h3 class="product-name">Casque audio</h3>
+                <p class="product-price">79 €</p>
+                <a href="#" class="btn-primary btn-block">Ajouter au panier</a>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <p class="footer-logo">KYSKOTECH</p>
+            <p class="footer-slogan">La tech au meilleur prix</p>
+        </div>
+        <div class="footer-links">
+            <a href="#">À propos</a>
+            <a href="#">Contact</a>
+            <a href="#">Mentions légales</a>
+        </div>
+    </div>
+    <p class="footer-copyright">© 2026 KYSKOTECH - Tous droits réservés</p>
+</footer>
+{% endblock %}
