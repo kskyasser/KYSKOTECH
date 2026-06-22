@@ -136,10 +136,12 @@ img {
 }
 
 .product-image {
-    background-color: #E2E8F0;
+    width: 100%;
     height: 180px;
+    object-fit: cover;
     border-radius: 8px;
     margin-bottom: 16px;
+    background-color: #E2E8F0;
 }
 
 .product-name {

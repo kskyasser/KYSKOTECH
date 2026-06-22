@@ -11,8 +11,16 @@ final class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
+       $produits = [
+            ['nom' => 'iPhone 15', 'prix' => 899, 'image' => 'iphone15.jpg'],
+            ['nom' => 'MacBook Air', 'prix' => 1199, 'image' => 'macbook.jpg'],
+            ['nom' => 'iPad Pro', 'prix' => 999, 'image' => 'ipad.jpg'],
+            ['nom' => 'Casque audio', 'prix' => 79, 'image' => 'casque.jpg'],
+            ['nom' => 'AirPods', 'prix' => 199, 'image' => 'airpods.jpg'],
+        ];
+
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'produits' => $produits,
         ]);
     }
 

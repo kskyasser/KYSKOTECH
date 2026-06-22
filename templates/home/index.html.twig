@@ -17,7 +17,7 @@
     <div class="hero-content">
         <h1>La tech au meilleur prix</h1>
         <p>Smartphones, ordinateurs, tablettes et accessoires au meilleur prix.</p>
-        <a href="#" class="btn-primary">Voir le catalogue</a>
+        <a href="{{ path('app_catalogue') }}" class="btn-primary">Voir le catalogue</a>
     </div>
 </section>
 <section class="section">
@@ -35,30 +35,14 @@
     <div class="container">
         <h2 class="section-title">Produits phares</h2>
         <div class="products-grid">
+            {% for produit in produits %}
             <div class="product-card">
-                <div class="product-image"></div>
-                <h3 class="product-name">iPhone 15</h3>
-                <p class="product-price">899 €</p>
+                <img src="{{ asset('images/' ~ produit.image) }}" alt="{{ produit.nom }}" class="product-image">
+                <h3 class="product-name">{{ produit.nom }}</h3>
+                <p class="product-price">{{ produit.prix }} €</p>
                 <a href="#" class="btn-primary btn-block">Ajouter au panier</a>
             </div>
-            <div class="product-card">
-                <div class="product-image"></div>
-                <h3 class="product-name">MacBook Air</h3>
-                <p class="product-price">1199 €</p>
-                <a href="#" class="btn-primary btn-block">Ajouter au panier</a>
-            </div>
-            <div class="product-card">
-                <div class="product-image"></div>
-                <h3 class="product-name">iPad Pro</h3>
-                <p class="product-price">999 €</p>
-                <a href="#" class="btn-primary btn-block">Ajouter au panier</a>
-            </div>
-            <div class="product-card">
-                <div class="product-image"></div>
-                <h3 class="product-name">Casque audio</h3>
-                <p class="product-price">79 €</p>
-                <a href="#" class="btn-primary btn-block">Ajouter au panier</a>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
