@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ProduitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -9,15 +10,9 @@ use Symfony\Component\Routing\Attribute\Route;
 final class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(): Response
+    public function index(ProduitRepository $produitRepository): Response
     {
-       $produits = [
-            ['nom' => 'iPhone 15', 'prix' => 899, 'image' => 'iphone15.jpg'],
-            ['nom' => 'MacBook Air', 'prix' => 1199, 'image' => 'macbook.jpg'],
-            ['nom' => 'iPad Pro', 'prix' => 999, 'image' => 'ipad.jpg'],
-            ['nom' => 'Casque audio', 'prix' => 79, 'image' => 'casque.jpg'],
-            ['nom' => 'AirPods', 'prix' => 199, 'image' => 'airpods.jpg'],
-        ];
+        $produits = $produitRepository->findAll();
 
         return $this->render('home/index.html.twig', [
             'produits' => $produits,
@@ -25,9 +20,13 @@ final class HomeController extends AbstractController
     }
 
     #[Route('/catalogue', name: 'app_catalogue')]
-    public function catalogue(): Response
+    public function catalogue(ProduitRepository $produitRepository): Response
     {
-        return $this->render('home/catalogue.html.twig');
+        $produits = $produitRepository->findAll();
+
+        return $this->render('home/catalogue.html.twig', [
+            'produits' => $produits,
+        ]);
     }
 
     #[Route('/produit', name: 'app_produit')]
@@ -49,8 +48,12 @@ final class HomeController extends AbstractController
     }
 
     #[Route('/admin', name: 'app_admin')]
-    public function admin(): Response
+    public function admin(ProduitRepository $produitRepository): Response
     {
-        return $this->render('home/admin.html.twig');
+        $produits = $produitRepository->findAll();
+
+        return $this->render('home/admin.html.twig', [
+            'produits' => $produits,
+        ]);
     }
 }
