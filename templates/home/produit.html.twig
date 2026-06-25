@@ -18,13 +18,13 @@
     <div class="container">
 
         <div class="product-detail">
-            <div class="product-detail-image"></div>
+            <img src="{{ asset('images/' ~ produit.image) }}" alt="{{ produit.nom }}" class="product-detail-image">
             <div class="product-detail-info">
-                <h1>iPhone 15</h1>
-                <p class="product-brand">Apple</p>
-                <p class="product-detail-price">899 €</p>
-                <p class="product-stock">✓ En stock</p>
-                <p class="product-description">Smartphone dernière génération, écran 6,1 pouces, 128 Go de stockage, double capteur photo. Garantie 2 ans.</p>
+                <h1>{{ produit.nom }}</h1>
+                <p class="product-brand">{{ produit.marque.nom }}</p>
+                <p class="product-detail-price">{{ produit.prix }} €</p>
+                <p class="product-stock">✓ En stock ({{ produit.stock }} disponibles)</p>
+                <p class="product-description">{{ produit.description }}</p>
                 <a href="#" class="btn-primary">Ajouter au panier</a>
             </div>
         </div>

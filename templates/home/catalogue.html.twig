@@ -21,63 +21,48 @@
 
             <aside class="filters">
                 <h3 class="filters-title">Filtres</h3>
+
                 <div class="filter-group">
                     <p class="filter-label">Catégorie</p>
-                    <a href="#">Smartphones</a>
-                    <a href="#">Ordinateurs</a>
-                    <a href="#">Tablettes</a>
-                    <a href="#">Accessoires</a>
+                    {% for categorie in categories %}
+                    <a href="{{ path('app_catalogue', {categorie: categorie.id}) }}">{{ categorie.nom }}</a>
+                    {% endfor %}
                 </div>
+
                 <div class="filter-group">
                     <p class="filter-label">Marque</p>
-                    <a href="#">Apple</a>
-                    <a href="#">Samsung</a>
+                    {% for marque in marques %}
+                    <a href="{{ path('app_catalogue', {marque: marque.id}) }}">{{ marque.nom }}</a>
+                    {% endfor %}
                 </div>
+
                 <div class="filter-group">
                     <p class="filter-label">Prix</p>
-                    <a href="#">Moins de 500 €</a>
-                    <a href="#">500 € - 1000 €</a>
-                    <a href="#">Plus de 1000 €</a>
+                    <a href="{{ path('app_catalogue', {prix: 'moins500'}) }}">Moins de 500 €</a>
+                    <a href="{{ path('app_catalogue', {prix: '500a1000'}) }}">500 € - 1000 €</a>
+                    <a href="{{ path('app_catalogue', {prix: 'plus1000'}) }}">Plus de 1000 €</a>
+                </div>
+
+                <div class="filter-group">
+                    <a href="{{ path('app_catalogue') }}" class="btn-primary btn-block">Réinitialiser</a>
                 </div>
             </aside>
 
             <div class="products-grid-3">
+                {% for produit in produits %}
                 <div class="product-card">
-                    <div class="product-image"></div>
-                    <h3 class="product-name">iPhone 15</h3>
-                    <p class="product-price">899 €</p>
-                    <a href="#" class="btn-primary btn-block">Ajouter au panier</a>
+                    <a href="{{ path('app_produit', {id: produit.id}) }}">
+                        <img src="{{ asset('images/' ~ produit.image) }}" alt="{{ produit.nom }}" class="product-image">
+                    </a>
+                    <h3 class="product-name">
+                        <a href="{{ path('app_produit', {id: produit.id}) }}">{{ produit.nom }}</a>
+                    </h3>
+                    <p class="product-price">{{ produit.prix }} €</p>
+                    <a href="{{ path('app_produit', {id: produit.id}) }}" class="btn-primary btn-block">Voir le produit</a>
                 </div>
-                <div class="product-card">
-                    <div class="product-image"></div>
-                    <h3 class="product-name">MacBook Air</h3>
-                    <p class="product-price">1199 €</p>
-                    <a href="#" class="btn-primary btn-block">Ajouter au panier</a>
-                </div>
-                <div class="product-card">
-                    <div class="product-image"></div>
-                    <h3 class="product-name">iPad Pro</h3>
-                    <p class="product-price">999 €</p>
-                    <a href="#" class="btn-primary btn-block">Ajouter au panier</a>
-                </div>
-                <div class="product-card">
-                    <div class="product-image"></div>
-                    <h3 class="product-name">Casque audio</h3>
-                    <p class="product-price">76 €</p>
-                    <a href="#" class="btn-primary btn-block">Ajouter au panier</a>
-                </div>
-                <div class="product-card">
-                    <div class="product-image"></div>
-                    <h3 class="product-name">Chargeur iPhone</h3>
-                    <p class="product-price">45 €</p>
-                    <a href="#" class="btn-primary btn-block">Ajouter au panier</a>
-                </div>
-                <div class="product-card">
-                    <div class="product-image"></div>
-                    <h3 class="product-name">Chargeur Samsung</h3>
-                    <p class="product-price">40 €</p>
-                    <a href="#" class="btn-primary btn-block">Ajouter au panier</a>
-                </div>
+                {% else %}
+                <p>Aucun produit ne correspond à ces critères.</p>
+                {% endfor %}
             </div>
 
         </div>

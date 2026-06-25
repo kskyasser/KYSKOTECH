@@ -37,10 +37,14 @@
         <div class="products-grid">
             {% for produit in produits %}
             <div class="product-card">
-                <img src="{{ asset('images/' ~ produit.image) }}" alt="{{ produit.nom }}" class="product-image">
-                <h3 class="product-name">{{ produit.nom }}</h3>
+                <a href="{{ path('app_produit', {id: produit.id}) }}">
+                    <img src="{{ asset('images/' ~ produit.image) }}" alt="{{ produit.nom }}" class="product-image">
+                </a>
+                <h3 class="product-name">
+                    <a href="{{ path('app_produit', {id: produit.id}) }}">{{ produit.nom }}</a>
+                </h3>
                 <p class="product-price">{{ produit.prix }} €</p>
-                <a href="#" class="btn-primary btn-block">Ajouter au panier</a>
+                <a href="{{ path('app_produit', {id: produit.id}) }}" class="btn-primary btn-block">Voir le produit</a>
             </div>
             {% endfor %}
         </div>

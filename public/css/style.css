@@ -483,3 +483,11 @@ img {
     color: #2563EB;
     font-weight: 500;
 }
+.product-name a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.product-card a {
+    text-decoration: none;
+}
