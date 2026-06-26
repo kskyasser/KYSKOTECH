@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier - KYSKOTECH{% endblock %}
+
+{% block body %}
+
+<header class="header">
+    <div class="header-content">
+        <a href="{{ path('app_home') }}" class="logo">KYSKOTECH</a>
+        <nav class="header-nav">
+            <a href="{{ path('app_home') }}">Accueil</a>
+            <a href="{{ path('app_catalogue') }}">Catalogue</a>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">Mon panier</h1>
+        <div class="cart-layout">
+
+            <div class="cart-items">
+                {% for item in produitsPanier %}
+                <div class="cart-item">
+                    <img src="{{ asset('images/' ~ item.produit.image) }}" alt="{{ item.produit.nom }}" class="cart-item-image">
+                    <div class="cart-item-info">
+                        <h3>{{ item.produit.nom }}</h3>
+                        <p>{{ item.produit.prix }} € l'unité</p>
+                    </div>
+                    <div class="cart-qty-control">
+    <a href="{{ path('app_panier_diminuer', {id: item.produit.id}) }}" class="qty-btn">−</a>
+    <span class="qty-value">{{ item.quantite }}</span>
+    <a href="{{ path('app_panier_ajouter', {id: item.produit.id}) }}" class="qty-btn">+</a>
+</div>
+                    <p class="cart-item-subtotal">{{ item.sousTotal }} €</p>
+                    <a href="{{ path('app_panier_supprimer', {id: item.produit.id}) }}" class="cart-remove">✕</a>
+                </div>
+                {% else %}
+                <p class="cart-empty">Votre panier est vide. <a href="{{ path('app_catalogue') }}">Voir le catalogue</a></p>
+                {% endfor %}
+            </div>
+
+            {% if produitsPanier is not empty %}
+            <div class="cart-summary">
+                <h3>Récapitulatif</h3>
+                <p class="summary-line">Sous-total : {{ total }} €</p>
+                <p class="summary-line">Livraison : Gratuite</p>
+                <p class="summary-total">Total : {{ total }} €</p>
+                <a href="#" class="btn-primary btn-block">Commander</a>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

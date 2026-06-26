@@ -17,7 +17,12 @@
     {% else %}
         <a href="{{ path('app_login') }}">Connexion</a>
     {% endif %}
-    <a href="{{ path('app_panier') }}">🛒 Panier</a>
+    <a href="{{ path('app_panier') }}">🛒 Panier
+    {% set panier = app.session.get('panier', {}) %}
+    {% set nbArticles = 0 %}
+    {% for quantite in panier %}{% set nbArticles = nbArticles + quantite %}{% endfor %}
+    {% if nbArticles > 0 %}<span class="cart-badge">{{ nbArticles }}</span>{% endif %}
+</a>
 </nav>
     </div>
 </header>
@@ -53,6 +58,7 @@
                 </h3>
                 <p class="product-price">{{ produit.prix }} €</p>
                 <a href="{{ path('app_produit', {id: produit.id}) }}" class="btn-primary btn-block">Voir le produit</a>
+                <a href="{{ path('app_panier_ajouter', {id: produit.id}) }}" class="btn-cart btn-block">🛒 Ajouter au panier</a>
             </div>
             {% endfor %}
         </div>

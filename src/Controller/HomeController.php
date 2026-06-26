@@ -74,11 +74,6 @@ final class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/panier', name: 'app_panier')]
-    public function panier(): Response
-    {
-        return $this->render('home/panier.html.twig');
-    }
 
     #[Route('/connexion', name: 'app_connexion')]
     public function connexion(): Response

@@ -9,7 +9,12 @@
         <a href="{{ path('app_home') }}" class="logo">KYSKOTECH</a>
         <nav class="header-nav">
             <a href="{{ path('app_connexion') }}">Connexion</a>
-            <a href="{{ path('app_panier') }}">🛒 Panier</a>
+            <a href="{{ path('app_panier') }}">🛒 Panier
+    {% set panier = app.session.get('panier', {}) %}
+    {% set nbArticles = 0 %}
+    {% for quantite in panier %}{% set nbArticles = nbArticles + quantite %}{% endfor %}
+    {% if nbArticles > 0 %}<span class="cart-badge">{{ nbArticles }}</span>{% endif %}
+</a>
         </nav>
     </div>
 </header>
@@ -25,7 +30,7 @@
                 <p class="product-detail-price">{{ produit.prix }} €</p>
                 <p class="product-stock">✓ En stock ({{ produit.stock }} disponibles)</p>
                 <p class="product-description">{{ produit.description }}</p>
-                <a href="#" class="btn-primary">Ajouter au panier</a>
+                <a href="{{ path('app_panier_ajouter', {id: produit.id}) }}" class="btn-primary">🛒 Ajouter au panier</a>
             </div>
         </div>
 
