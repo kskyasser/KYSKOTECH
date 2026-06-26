@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des produits - KYSKOTECH Admin{% endblock %}
+
+{% block body %}
+
+<header class="header">
+    <div class="header-content">
+        <a href="{{ path('app_home') }}" class="logo">KYSKOTECH Admin</a>
+        <nav class="header-nav">
+            <a href="{{ path('app_home') }}">Retour au site</a>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <div class="admin-header">
+            <h1 class="section-title">Gestion des produits</h1>
+            <a href="{{ path('app_produit_new') }}" class="btn-primary">+ Ajouter un produit</a>
+        </div>
+
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Catégorie</th>
+                    <th>Prix</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produit in produits %}
+                <tr>
+                    <td>{{ produit.nom }}</td>
+                    <td>{{ produit.categorie ? produit.categorie.nom : '-' }}</td>
+                    <td>{{ produit.prix }} €</td>
+                    <td>{{ produit.stock }}</td>
+                    <td>
+                        <a href="{{ path('app_produit_show', {id: produit.id}) }}" class="action-link">Voir</a> |
+                        <a href="{{ path('app_produit_edit', {id: produit.id}) }}" class="action-link">Modifier</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">Aucun produit enregistré.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+{% endblock %}

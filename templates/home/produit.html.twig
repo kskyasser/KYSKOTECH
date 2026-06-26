@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}iPhone 15 - KYSKOTECH{% endblock %}
+{% block title %}{{ produit.nom }} - KYSKOTECH{% endblock %}
 
 {% block body %}
 
@@ -8,8 +8,8 @@
     <div class="header-content">
         <a href="{{ path('app_home') }}" class="logo">KYSKOTECH</a>
         <nav class="header-nav">
-            <a href="#">Connexion</a>
-            <a href="#">🛒 Panier</a>
+            <a href="{{ path('app_connexion') }}">Connexion</a>
+            <a href="{{ path('app_panier') }}">🛒 Panier</a>
         </nav>
     </div>
 </header>
@@ -31,16 +31,17 @@
 
         <div class="reviews">
             <h2 class="section-title">Avis clients</h2>
+            {% for av in avis %}
             <div class="review-card">
-                <p class="review-author">Marie D.</p>
-                <p class="review-stars">★★★★★</p>
-                <p>Excellent téléphone, livraison rapide. Je recommande KYSKOTECH !</p>
+                <p class="review-author">{{ av.auteur }}</p>
+                <p class="review-stars">
+                    {% for i in 1..5 %}{% if i <= av.note %}★{% else %}☆{% endif %}{% endfor %}
+                </p>
+                <p>{{ av.commentaire }}</p>
             </div>
-            <div class="review-card">
-                <p class="review-author">Thomas L.</p>
-                <p class="review-stars">★★★★☆</p>
-                <p>Bon rapport qualité-prix, conforme à la description.</p>
-            </div>
+            {% else %}
+            <p>Aucun avis pour ce produit pour le moment.</p>
+            {% endfor %}
         </div>
 
     </div>

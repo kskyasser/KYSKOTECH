@@ -6,9 +6,11 @@ use App\Repository\UtilisateurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
-class Utilisateur
+class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,7 +20,7 @@ class Utilisateur
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
@@ -27,8 +29,8 @@ class Utilisateur
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $role = null;
+    #[ORM\Column]
+    private array $roles = [];
 
     /**
      * @var Collection<int, Adresse>
@@ -61,7 +63,6 @@ class Utilisateur
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
-
         return $this;
     }
 
@@ -73,7 +74,6 @@ class Utilisateur
     public function setEmail(string $email): static
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -85,7 +85,6 @@ class Utilisateur
     public function setMotDePasse(string $motDePasse): static
     {
         $this->motDePasse = $motDePasse;
-
         return $this;
     }
 
@@ -97,20 +96,51 @@ class Utilisateur
     public function setPrenom(string $prenom): static
     {
         $this->prenom = $prenom;
-
         return $this;
     }
 
-    public function getRole(): ?string
+    /**
+     * Identifiant unique de l'utilisateur (l'email).
+     */
+    public function getUserIdentifier(): string
     {
-        return $this->role;
+        return (string) $this->email;
     }
 
-    public function setRole(string $role): static
+    /**
+     * @return list<string>
+     */
+    public function getRoles(): array
     {
-        $this->role = $role;
+        $roles = $this->roles;
+        // garantit que chaque utilisateur a au moins ROLE_USER
+        $roles[] = 'ROLE_USER';
+        return array_unique($roles);
+    }
 
+    /**
+     * @param list<string> $roles
+     */
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
         return $this;
+    }
+
+    /**
+     * Le mot de passe haché (requis par PasswordAuthenticatedUserInterface).
+     */
+    public function getPassword(): ?string
+    {
+        return $this->motDePasse;
+    }
+
+    /**
+     * Méthode requise par l'interface (nettoyage de données sensibles temporaires).
+     */
+    public function eraseCredentials(): void
+    {
+        // Rien à effacer ici
     }
 
     /**
@@ -127,19 +157,16 @@ class Utilisateur
             $this->adresses->add($adress);
             $adress->setUtilisateur($this);
         }
-
         return $this;
     }
 
     public function removeAdress(Adresse $adress): static
     {
         if ($this->adresses->removeElement($adress)) {
-            // set the owning side to null (unless already changed)
             if ($adress->getUtilisateur() === $this) {
                 $adress->setUtilisateur(null);
             }
         }
-
         return $this;
     }
 
@@ -157,19 +184,16 @@ class Utilisateur
             $this->commandes->add($commande);
             $commande->setUtilisateur($this);
         }
-
         return $this;
     }
 
     public function removeCommande(Commande $commande): static
     {
         if ($this->commandes->removeElement($commande)) {
-            // set the owning side to null (unless already changed)
             if ($commande->getUtilisateur() === $this) {
                 $commande->setUtilisateur(null);
             }
         }
-
         return $this;
     }
 }

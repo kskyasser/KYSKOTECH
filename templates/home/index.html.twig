@@ -7,10 +7,18 @@
 <header class="header">
     <div class="header-content">
         <a href="{{ path('app_home') }}" class="logo">KYSKOTECH</a>
-        <nav class="header-nav">
-            <a href="#">Connexion</a>
-            <a href="#">🛒 Panier</a>
-        </nav>
+       <nav class="header-nav">
+    {% if app.user %}
+        <span class="user-greeting">Bonjour {{ app.user.prenom }}</span>
+        {% if 'ROLE_ADMIN' in app.user.roles %}
+            <a href="{{ path('app_produit_index') }}">Admin</a>
+        {% endif %}
+        <a href="{{ path('app_logout') }}">Déconnexion</a>
+    {% else %}
+        <a href="{{ path('app_login') }}">Connexion</a>
+    {% endif %}
+    <a href="{{ path('app_panier') }}">🛒 Panier</a>
+</nav>
     </div>
 </header>
 <section class="hero">

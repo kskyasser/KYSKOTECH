@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un produit - KYSKOTECH Admin{% endblock %}
+
+{% block body %}
+
+<header class="header">
+    <div class="header-content">
+        <a href="{{ path('app_home') }}" class="logo">KYSKOTECH Admin</a>
+        <nav class="header-nav">
+            <a href="{{ path('app_produit_index') }}">Retour à la liste</a>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="admin-form-card">
+        <h1 class="section-title">Modifier le produit</h1>
+        {{ include('produit/_form.html.twig', {'button_label': 'Enregistrer les modifications'}) }}
+
+        <div class="form-actions">
+            {{ include('produit/_delete_form.html.twig') }}
+            <a href="{{ path('app_produit_index') }}" class="back-link">← Retour à la liste</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
