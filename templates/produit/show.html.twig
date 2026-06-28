@@ -1,42 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit{% endblock %}
+{% block title %}{{ produit.nom }} - KYSKOTECH Admin{% endblock %}
 
 {% block body %}
-    <h1>Produit</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ produit.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ produit.nom }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ produit.description }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ produit.prix }}</td>
-            </tr>
-            <tr>
-                <th>Stock</th>
-                <td>{{ produit.stock }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ produit.image }}</td>
-            </tr>
-        </tbody>
-    </table>
+<header class="header">
+    <div class="header-content">
+        <a href="{{ path('app_home') }}" class="logo">KYSKOTECH Admin</a>
+        <nav class="header-nav">
+            <a href="{{ path('app_produit_index') }}">Retour à la liste</a>
+        </nav>
+    </div>
+</header>
 
-    <a href="{{ path('app_produit_index') }}">back to list</a>
+<section class="section">
+    <div class="admin-form-card">
+        <h1 class="section-title">Détail du produit</h1>
 
-    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
+        <table class="show-table">
+            <tr><th>Identifiant</th><td>{{ produit.id }}</td></tr>
+            <tr><th>Nom</th><td>{{ produit.nom }}</td></tr>
+            <tr><th>Description</th><td>{{ produit.description }}</td></tr>
+            <tr><th>Prix</th><td>{{ produit.prix }} €</td></tr>
+            <tr><th>Stock</th><td>{{ produit.stock }}</td></tr>
+            <tr><th>Catégorie</th><td>{{ produit.categorie ? produit.categorie.nom : '-' }}</td></tr>
+            <tr><th>Marque</th><td>{{ produit.marque ? produit.marque.nom : '-' }}</td></tr>
+            <tr><th>Image</th><td>{{ produit.image }}</td></tr>
+        </table>
 
-    {{ include('produit/_delete_form.html.twig') }}
+        <div class="form-actions">
+            <a href="{{ path('app_produit_index') }}" class="btn-primary">← Retour à la liste</a>
+            <a href="{{ path('app_produit_edit', {id: produit.id}) }}" class="btn-cart">Modifier</a>
+            {{ include('produit/_delete_form.html.twig') }}
+        </div>
+    </div>
+</section>
+
 {% endblock %}
